@@ -1,60 +1,60 @@
 # Programación Tradicional
-# Ejemplo: Gestión de una cuenta bancaria
+# Ejemplo: Gestión de una cuenta financiera
 
 # Definición de variables globales
-balance = 0
-interest_rate = 0.05
+saldo = 0
+tasa_interes = 0.05
 
-# Función para depositar dinero en la cuenta
-def deposit(amount):
-    global balance
-    balance += amount
+# Función para ingresar dinero en la cuenta
+def ingresar(dinero):
+    global saldo
+    saldo += dinero
 
 # Función para retirar dinero de la cuenta
-def withdraw(amount):
-    global balance
-    balance -= amount
+def retirar(dinero):
+    global saldo
+    saldo -= dinero
 
 # Función para calcular el interés y actualizar el saldo
-def calculate_interest():
-    global balance, interest_rate
-    interest = balance * interest_rate
-    balance += interest
+def calcular_intereses():
+    global saldo, tasa_interes
+    intereses = saldo * tasa_interes
+    saldo += intereses
 
 # Uso de las funciones en la programación tradicional
-deposit(1000)
-withdraw(500)
-calculate_interest()
+ingresar(1000)
+retirar(500)
+calcular_intereses()
 
 # Imprimir el saldo final
-print("Balance (Traditional):", balance)
+print("Saldo (Tradicional):", saldo)
 
 
 # Programación Orientada a Objetos (POO)
-# Ejemplo: Gestión de una cuenta bancaria
+# Ejemplo: Gestión de una cuenta financiera
 
-class BankAccount:
-    def __init__(self, initial_balance=0, interest_rate=0.05):
-        self.balance = initial_balance
-        self.interest_rate = interest_rate
+class CuentaFinanciera:
+    def __init__(self, saldo_inicial=0, tasa_interes=0.05):
+        self.saldo = saldo_inicial
+        self.tasa_interes = tasa_interes
 
-    def deposit(self, amount):
-        self.balance += amount
+    def ingresar(self, dinero):
+        self.saldo += dinero
 
-    def withdraw(self, amount):
-        self.balance -= amount
+    def retirar(self, dinero):
+        self.saldo -= dinero
 
-    def calculate_interest(self):
-        interest = self.balance * self.interest_rate
-        self.balance += interest
+    def calcular_intereses(self):
+        intereses = self.saldo * self.tasa_interes
+        self.saldo += intereses
 
-# Crear una instancia de la clase BankAccount
-account = BankAccount()
+# Crear una instancia de la clase CuentaFinanciera
+cuenta = CuentaFinanciera()
 
 # Uso de los métodos en la programación orientada a objetos
-account.deposit(1000)
-account.withdraw(500)
-account.calculate_interest()
+cuenta.ingresar(1000)
+cuenta.retirar(500)
+cuenta.calcular_intereses()
 
 # Imprimir el saldo final
-print("Balance (OOP):", account.balance)
+print("Saldo (POO):", cuenta.saldo)
