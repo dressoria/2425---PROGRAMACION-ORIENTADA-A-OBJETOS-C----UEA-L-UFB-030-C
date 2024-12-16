@@ -1,31 +1,31 @@
 # Programación Orientada a Objetos (POO)
-# Ejemplo: Gestión de un vehículo
+# Ejemplo: Gestión de un automóvil
 
-class Vehicle:
-    def __init__(self, fuel_efficiency=25):
-        self.fuel_tank = 0
-        self.mileage = 0
-        self.fuel_efficiency = fuel_efficiency
+class Automovil:
+    def __init__(self, eficiencia_combustible=25):
+        self.tanque_combustible = 0
+        self.kilometraje = 0
+        self.eficiencia_combustible = eficiencia_combustible
 
-    def fill_tank(self, amount):
-        self.fuel_tank += amount
+    def llenar_tanque(self, cantidad):
+        self.tanque_combustible += cantidad
 
-    def drive(self, distance):
-        fuel_needed = distance / self.fuel_efficiency
-        if fuel_needed <= self.fuel_tank:
-            self.fuel_tank -= fuel_needed
-            self.mileage += distance
-            print("Driving:", distance, "miles")
+    def conducir(self, distancia):
+        combustible_necesario = distancia / self.eficiencia_combustible
+        if combustible_necesario <= self.tanque_combustible:
+            self.tanque_combustible -= combustible_necesario
+            self.kilometraje += distancia
+            print("Conduciendo:", distancia, "kilómetros")
         else:
-            print("Not enough fuel to drive that far.")
+            print("No hay suficiente combustible para esa distancia.")
 
-# Crear una instancia de la clase Vehicle
-car = Vehicle()
+# Crear una instancia de la clase Automovil
+auto = Automovil()
 
 # Uso de los métodos en la programación orientada a objetos
-car.fill_tank(20)
-car.drive(100)
+auto.llenar_tanque(20)
+auto.conducir(100)
 
-# Imprimir la distancia recorrida y el nivel de combustible restante
-print("Mileage (OOP):", car.mileage)
-print("Fuel Tank (OOP):", car.fuel_tank)
+# Imprimir el kilometraje y el nivel de combustible restante
+print("Kilometraje (POO):", auto.kilometraje)
+print("Tanque de combustible (POO):", auto.tanque_combustible)
