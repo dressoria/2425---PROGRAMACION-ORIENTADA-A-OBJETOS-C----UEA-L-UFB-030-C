@@ -1,31 +1,31 @@
 # Programación Tradicional
-# Ejemplo: Gestión de un vehículo
+# Ejemplo: Gestión de un automóvil
 
 # Definición de variables globales
-fuel_tank = 0
-mileage = 0
-fuel_efficiency = 25
+tanque_combustible = 0
+kilometraje = 0
+eficiencia_combustible = 25
 
 # Función para llenar el tanque de combustible
-def fill_tank(amount):
-    global fuel_tank
-    fuel_tank += amount
+def llenar_tanque(cantidad):
+    global tanque_combustible
+    tanque_combustible += cantidad
 
-# Función para conducir el vehículo
-def drive(distance):
-    global fuel_tank, mileage, fuel_efficiency
-    fuel_needed = distance / fuel_efficiency
-    if fuel_needed <= fuel_tank:
-        fuel_tank -= fuel_needed
-        mileage += distance
-        print("Driving:", distance, "miles")
+# Función para conducir el automóvil
+def conducir(distancia):
+    global tanque_combustible, kilometraje, eficiencia_combustible
+    combustible_necesario = distancia / eficiencia_combustible
+    if combustible_necesario <= tanque_combustible:
+        tanque_combustible -= combustible_necesario
+        kilometraje += distancia
+        print("Conduciendo:", distancia, "kilómetros")
     else:
-        print("Not enough fuel to drive that far.")
+        print("No hay suficiente combustible para esa distancia.")
 
 # Uso de las funciones en la programación tradicional
-fill_tank(20)
-drive(100)
+llenar_tanque(20)
+conducir(100)
 
-# Imprimir la distancia recorrida y el nivel de combustible restante
-print("Mileage (Traditional):", mileage)
-print("Fuel Tank (Traditional):", fuel_tank)
+# Imprimir el kilometraje y el nivel de combustible restante
+print("Kilometraje (Tradicional):", kilometraje)
+print("Tanque de combustible (Tradicional):", tanque_combustible)
