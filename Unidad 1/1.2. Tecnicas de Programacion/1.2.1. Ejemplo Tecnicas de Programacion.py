@@ -1,102 +1,102 @@
-class Personaje:
+class Combatiente:
 
-    def __init__(self, nombre, fuerza, inteligencia, defensa, vida):
-        self.nombre = nombre
+    def __init__(self, alias, fuerza, sabiduría, resistencia, salud):
+        self.alias = alias
         self.fuerza = fuerza
-        self.inteligencia = inteligencia
-        self.defensa = defensa
-        self.vida = vida
+        self.sabiduría = sabiduría
+        self.resistencia = resistencia
+        self.salud = salud
 
-    def atributos(self):
-        print(self.nombre, ":", sep="")
+    def mostrar_atributos(self):
+        print(self.alias, ":", sep="")
         print("·Fuerza:", self.fuerza)
-        print("·Inteligencia:", self.inteligencia)
-        print("·Defensa:", self.defensa)
-        print("·Vida:", self.vida)
+        print("·Sabiduría:", self.sabiduría)
+        print("·Resistencia:", self.resistencia)
+        print("·Salud:", self.salud)
 
-    def subir_nivel(self, fuerza, inteligencia, defensa):
-        self.fuerza = self.fuerza + fuerza
-        self.inteligencia = self.inteligencia + inteligencia
-        self.defensa = self.defensa + defensa
+    def mejorar(self, fuerza, sabiduría, resistencia):
+        self.fuerza += fuerza
+        self.sabiduría += sabiduría
+        self.resistencia += resistencia
 
-    def esta_vivo(self):
-        return self.vida > 0
+    def vivo(self):
+        return self.salud > 0
 
-    def morir(self):
-        self.vida = 0
-        print(self.nombre, "ha muerto")
+    def caer(self):
+        self.salud = 0
+        print(self.alias, "ha caído")
 
-    def daño(self, enemigo):
-        return self.fuerza - enemigo.defensa
+    def calcular_ataque(self, oponente):
+        return self.fuerza - oponente.resistencia
 
-    def atacar(self, enemigo):
-        daño = self.daño(enemigo)
-        enemigo.vida = enemigo.vida - daño
-        print(self.nombre, "ha realizado", daño, "puntos de daño a", enemigo.nombre)
-        if enemigo.esta_vivo():
-            print("Vida de", enemigo.nombre, "es", enemigo.vida)
+    def golpear(self, oponente):
+        daño = self.calcular_ataque(oponente)
+        oponente.salud -= daño
+        print(self.alias, "causa", daño, "de daño a", oponente.alias)
+        if oponente.vivo():
+            print("Salud de", oponente.alias, "es", oponente.salud)
         else:
-            enemigo.morir()
+            oponente.caer()
 
 
-class Guerrero(Personaje):
+class Luchador(Combatiente):
 
-    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
-        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+    def __init__(self, alias, fuerza, sabiduría, resistencia, salud, espada):
+        super().__init__(alias, fuerza, sabiduría, resistencia, salud)
         self.espada = espada
 
     def cambiar_arma(self):
-        opcion = int(input("Elige un arma: (1) Acero Valyrio, daño 8. (2) Matadragones, daño 10"))
-        if opcion == 1:
+        opción = int(input("Elige una espada: (1) Acero del Rey, daño 8. (2) Espada del Dragón, daño 10"))
+        if opción == 1:
             self.espada = 8
-        elif opcion == 2:
+        elif opción == 2:
             self.espada = 10
         else:
-            print("Número de arma incorrecta")
+            print("Opción de arma inválida")
 
-    def atributos(self):
-        super().atributos()
+    def mostrar_atributos(self):
+        super().mostrar_atributos()
         print("·Espada:", self.espada)
 
-    def daño(self, enemigo):
-        return self.fuerza * self.espada - enemigo.defensa
+    def calcular_ataque(self, oponente):
+        return self.fuerza * self.espada - oponente.resistencia
 
 
-class Mago(Personaje):
+class Hechicero(Combatiente):
 
-    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, libro):
-        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
-        self.libro = libro
+    def __init__(self, alias, fuerza, sabiduría, resistencia, salud, grimorio):
+        super().__init__(alias, fuerza, sabiduría, resistencia, salud)
+        self.grimorio = grimorio
 
-    def atributos(self):
-        super().atributos()
-        print("·Libro:", self.libro)
+    def mostrar_atributos(self):
+        super().mostrar_atributos()
+        print("·Grimorio:", self.grimorio)
 
-    def daño(self, enemigo):
-        return self.inteligencia * self.libro - enemigo.defensa
+    def calcular_ataque(self, oponente):
+        return self.sabiduría * self.grimorio - oponente.resistencia
 
 
-def combate(jugador_1, jugador_2):
+def enfrentamiento(combatiente_1, combatiente_2):
     turno = 0
-    while jugador_1.esta_vivo() and jugador_2.esta_vivo():
+    while combatiente_1.vivo() and combatiente_2.vivo():
         print("\nTurno", turno)
-        print(">>> Acción de ", jugador_1.nombre, ":", sep="")
-        jugador_1.atacar(jugador_2)
-        print(">>> Acción de ", jugador_2.nombre, ":", sep="")
-        jugador_2.atacar(jugador_1)
-        turno = turno + 1
-    if jugador_1.esta_vivo():
-        print("\nHa ganado", jugador_1.nombre)
-    elif jugador_2.esta_vivo():
-        print("\nHa ganado", jugador_2.nombre)
+        print(">>> Acción de ", combatiente_1.alias, ":", sep="")
+        combatiente_1.golpear(combatiente_2)
+        print(">>> Acción de ", combatiente_2.alias, ":", sep="")
+        combatiente_2.golpear(combatiente_1)
+        turno += 1
+    if combatiente_1.vivo():
+        print("\nHa ganado", combatiente_1.alias)
+    elif combatiente_2.vivo():
+        print("\nHa ganado", combatiente_2.alias)
     else:
         print("\nEmpate")
 
 
-personaje_1 = Guerrero("Guts", 20, 10, 4, 100, 4)
-personaje_2 = Mago("Vanessa", 5, 15, 4, 100, 3)
+guerrero_1 = Luchador("Alduin", 18, 8, 6, 120, 5)
+mago_1 = Hechicero("Merlina", 6, 18, 5, 110, 4)
 
-personaje_1.atributos()
-personaje_2.atributos()
+guerrero_1.mostrar_atributos()
+mago_1.mostrar_atributos()
 
-combate(personaje_1, personaje_2)
+enfrentamiento(guerrero_1, mago_1)
