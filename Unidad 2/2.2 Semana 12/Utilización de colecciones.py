@@ -1,4 +1,3 @@
-# Versión 1 - Implementación de la biblioteca digital
 
 # Empezamos creando la clase Libro, que tendrá atributos como título, autor, categoría y ISBN.
 # Utilizamos una tupla para título y autor porque esos valores no cambiarán una vez asignados.
